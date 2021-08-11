@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:todo_app_firebase/screens/user_info_screen.dart';
 import '../services/constants.dart';
 import '../services/size_config.dart';
 
@@ -12,7 +13,7 @@ class Authentication {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      // Get.off(UserInfoScreen(user: user));
+      Get.off(UserInfoScreen(user));
     }
     return firebaseApp;
   }
