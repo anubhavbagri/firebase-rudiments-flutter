@@ -47,12 +47,12 @@ class Authentication {
       } on FirebaseAuthException catch (e) {
         if (e.code == 'account-exists-with-different-credential') {
           // The account already exists with a different credential
-          // Authentication.customSnackBar(ERROR_1);
+          Authentication.customSnackBar(ERROR_1);
         } else if (e.code == 'invalid-credential') {
-          // Authentication.customSnackBar(ERROR_2);
+          Authentication.customSnackBar(ERROR_2);
         }
       } catch (e) {
-        // Authentication.customSnackBar(ERROR_3);
+        Authentication.customSnackBar(ERROR_3);
       }
     }
   }
