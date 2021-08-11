@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.todo_app_firebase">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="todo_app_firebase"
         android:icon="@mipmap/ic_launcher">
