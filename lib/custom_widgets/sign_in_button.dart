@@ -1,3 +1,4 @@
+import 'package:todo_app_firebase/screens/home_page.dart';
 import 'package:todo_app_firebase/screens/user_info_screen.dart';
 import 'package:todo_app_firebase/services/size_config.dart';
 import 'package:todo_app_firebase/utils/authentication.dart';
@@ -42,7 +43,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                     _isSigningIn = false;
                   });
 
-                  Get.off(UserInfoScreen(user));
+                  Get.off(HomePage(user: user));
                 }
               },
               child: Padding(
