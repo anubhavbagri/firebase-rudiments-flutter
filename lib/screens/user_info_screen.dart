@@ -129,7 +129,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                             _isSigningOut = false;
                           });
 
-                          Get.off(SignInScreen(),
+                          Get.off(() => SignInScreen(),
                               transition: Transition.downToUp);
                         },
                         child: Padding(

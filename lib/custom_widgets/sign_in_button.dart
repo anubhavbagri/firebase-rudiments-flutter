@@ -43,7 +43,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                     _isSigningIn = false;
                   });
 
-                  Get.off(HomePage(user: user));
+                  Get.off(() => HomePage(user: user));
                 }
               },
               child: Padding(

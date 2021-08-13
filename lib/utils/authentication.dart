@@ -13,7 +13,7 @@ class Authentication {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      Get.off(HomePage(user: user));
+      Get.off(() => HomePage(user: user));
     }
     return firebaseApp;
   }
