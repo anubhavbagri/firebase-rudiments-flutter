@@ -37,4 +37,13 @@ class Database {
         .then((value) => print('Note deleted'))
         .catchError((e) => print('Failed to delete note $e'));
   }
+
+  static Future<void> updateNoteById(String documentId, Note note) {
+    //to update the title of the note in firebase
+    return notesRef
+        .doc(documentId)
+        .update({'title': note.title})
+        .then((value) => print('Note updated'))
+        .catchError((e) => print('Failed to update note: $e'));
+  }
 }
