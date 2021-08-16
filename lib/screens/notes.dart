@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:todo_app_firebase/custom_widgets/snackbar.dart';
+import 'package:todo_app_firebase/screens/create_note.dart';
 import 'package:todo_app_firebase/utils/custom_colors.dart';
 import 'package:todo_app_firebase/utils/database_helper.dart';
 import 'package:todo_app_firebase/utils/note_modal.dart';
@@ -60,8 +63,31 @@ class _MyNotesState extends State<MyNotes> {
                               background: Container(
                                 color: CustomColors.appNavy,
                               ),
-                              onDismissed: (direction) {},
-                              child: Card(),
+                              onDismissed: (direction) {
+                                Database.deleteNoteById(
+                                    snapshot.data!.docs[index].id);
+                                CustomSnackBar.show('Note dismissed');
+                              },
+                              child: Card(
+                                color: Colors.white10,
+                                child: ListTile(
+                                  title: Text(
+                                    snapshot.data!.docs[index].data().title,
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  onTap: () async {
+                                    ///storing document of a particular document id
+                                    DocumentReference docRef = Database.notesRef
+                                        .doc(snapshot.data!.docs[index].id);
+                                    DocumentSnapshot<Note> docSnap =
+                                        await docRef.get()
+                                            as DocumentSnapshot<Note>;
+
+                                    ///navigate to createNote screen
+                                    Get.to(CreateNote(document: docSnap));
+                                  },
+                                ),
+                              ),
                             );
                           });
                     }
