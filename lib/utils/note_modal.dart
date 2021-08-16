@@ -7,9 +7,9 @@ class Note {
   Note({required this.title, this.uid, this.dateTime});
 
   //this will convert json data to Note object
-  Note.fromJson(Map<String, Object> json)
+  Note.fromJson(Map<String, Object?> json)
       : this(
-            title: json['title'] as String,
+            title: json['title']! as String,
             uid: json['uid'] as String,
             dateTime: json['dateTime'] as Timestamp);
 
