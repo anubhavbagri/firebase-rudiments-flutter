@@ -1,12 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:get/get.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:todo_app_firebase/custom_widgets/snackbar.dart';
 import 'package:todo_app_firebase/screens/home_page.dart';
+
 import '../services/constants.dart';
-import '../services/size_config.dart';
 
 class Authentication {
   static Future<FirebaseApp> initializeFirebase() async {
@@ -46,15 +46,19 @@ class Authentication {
         //return user Object from user credential
         user = userCredential.user;
         return user;
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'account-exists-with-different-credential') {
-          // The account already exists with a different credential
-          Authentication.customSnackBar(ERROR_1);
-        } else if (e.code == 'invalid-credential') {
-          Authentication.customSnackBar(ERROR_2);
-        }
-      } catch (e) {
-        Authentication.customSnackBar(ERROR_3);
+      }
+      // on FirebaseAuthException catch (e) {
+      //   if (e.code == 'account-exists-with-different-credential') {
+      //      The account already exists with a different credential
+      //     CustomSnackBar.show(ERROR_1);
+      //   } else if (e.code == 'invalid-credential') {
+      //     CustomSnackBar.show(ERROR_2);
+      //   } else {
+      //     CustomSnackBar.show('Something went wrong 🚧 Try again');
+      //   }
+      // }
+      catch (e) {
+        CustomSnackBar.show(ERROR_3);
       }
     }
   }
@@ -68,44 +72,7 @@ class Authentication {
       }
       await FirebaseAuth.instance.signOut();
     } catch (e) {
-      Authentication.customSnackBar(SIGNOUT_ERROR);
+      CustomSnackBar.show(SIGNOUT_ERROR);
     }
-  }
-
-  static customSnackBar(String message) {
-    Get.rawSnackbar(
-      backgroundColor: Colors.white,
-      messageText: Text(
-        message,
-        style: TextStyle(
-          color: Colors.black,
-        ),
-      ), // message
-      mainButton: TextButton(
-        onPressed: () {
-          Get.back();
-        },
-        child: Text(
-          'Close',
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
-      ),
-      margin: EdgeInsets.symmetric(
-          vertical: SizeConfig.safeVertical! * .03,
-          horizontal: SizeConfig.safeHorizontal! * .04),
-      borderColor: Colors.red,
-      borderRadius: 10,
-      borderWidth: 2,
-      boxShadows: [
-        BoxShadow(
-          color: Colors.grey,
-          blurRadius: 3.0,
-        )
-      ],
-      isDismissible: false,
-      duration: Duration(hours: 2),
-    );
   }
 }
