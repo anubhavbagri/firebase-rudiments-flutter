@@ -40,17 +40,20 @@ class MyNotes extends StatefulWidget {
 class _MyNotesState extends State<MyNotes> {
   late Stream<QuerySnapshot<Note>> _notes;
 
-  void _updateNotesQuery() {
+  late Query<Note> _notesQuery;
+
+  void _updateNotesQuery(NoteQuery query) {
     setState(() {
       Database.updateNoteRef(FirebaseAuth.instance.currentUser!.uid);
-      _notes = Database.notesRef.snapshots();
+      _notesQuery = Database.notesRef.queryBy(query);
+      _notes = _notesQuery.snapshots();
     });
   }
 
   @override
   void initState() {
     super.initState();
-    _updateNotesQuery();
+    _updateNotesQuery(NoteQuery.dateAsc); //sorting date in ascending order
   }
 
   @override
