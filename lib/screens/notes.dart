@@ -63,7 +63,32 @@ class _MyNotesState extends State<MyNotes> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text('My Notes'),
-          actions: [],
+          actions: [
+            PopupMenuButton<NoteQuery>(
+              onSelected: _updateNotesQuery,
+              icon: Icon(Icons.sort),
+              itemBuilder: (BuildContext context) {
+                return [
+                  const PopupMenuItem(
+                    value: NoteQuery.titleAsc,
+                    child: Text('Sort by Title ascending'),
+                  ),
+                  const PopupMenuItem(
+                    value: NoteQuery.titleDesc,
+                    child: Text('Sort by Title descending'),
+                  ),
+                  const PopupMenuItem(
+                    value: NoteQuery.dateAsc,
+                    child: Text('Sort by Date ascending'),
+                  ),
+                  const PopupMenuItem(
+                    value: NoteQuery.dateDesc,
+                    child: Text('Sort by Date descending'),
+                  ),
+                ];
+              },
+            )
+          ],
         ),
         body: Column(
           children: [
