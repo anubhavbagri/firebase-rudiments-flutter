@@ -9,6 +9,27 @@ import 'package:todo_app_firebase/utils/custom_colors.dart';
 import 'package:todo_app_firebase/utils/database_helper.dart';
 import 'package:todo_app_firebase/utils/note_modal.dart';
 
+enum NoteQuery {
+  titleAsc,
+  titleDesc,
+  dateAsc,
+  dateDesc,
+}
+
+extension on Query<Note> {
+  ///Create a firebase query from a [NoteQuery]
+  Query<Note> queryBy(NoteQuery query) {
+    switch (query) {
+      case NoteQuery.titleAsc:
+      case NoteQuery.titleDesc:
+        return orderBy('title', descending: query == NoteQuery.titleDesc);
+      case NoteQuery.dateAsc:
+      case NoteQuery.dateDesc:
+        return orderBy('dateTime', descending: query == NoteQuery.dateDesc);
+    }
+  }
+}
+
 class MyNotes extends StatefulWidget {
   const MyNotes({Key? key}) : super(key: key);
 
