@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,9 +17,19 @@ class MyNotes extends StatefulWidget {
 }
 
 class _MyNotesState extends State<MyNotes> {
+  late Stream<QuerySnapshot<Note>> _notes;
+
+  void _updateNotesQuery() {
+    setState(() {
+      Database.updateNoteRef(FirebaseAuth.instance.currentUser!.uid);
+      _notes = Database.notesRef.snapshots();
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+    _updateNotesQuery();
   }
 
   @override
@@ -35,7 +46,7 @@ class _MyNotesState extends State<MyNotes> {
             Expanded(
               child: Container(
                 child: StreamBuilder<QuerySnapshot<Note>>(
-                  stream: Database.notes,
+                  stream: _notes,
                   builder: (BuildContext context,
                       AsyncSnapshot<QuerySnapshot<Note>> snapshot) {
                     if (snapshot.hasError) {
