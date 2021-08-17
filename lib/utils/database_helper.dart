@@ -6,6 +6,19 @@ import 'package:todo_app_firebase/utils/note_modal.dart';
 class Database {
   static User? user = FirebaseAuth.instance.currentUser;
 
+  //To update notes reference object by passing current user id
+  static void updateNoteRef(String uid) {
+    notesRef = FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .collection('notes')
+        .withConverter<Note>(
+          fromFirestore: (snapshot, _) =>
+              Note.fromJson(snapshot.data()!), //converting to Note object
+          toFirestore: (note, _) => note.toJson(),
+        );
+  }
+
   //To update or modify your notes, you have to give a reference for your particular collection
   static var notesRef = FirebaseFirestore.instance
       .collection('users')
