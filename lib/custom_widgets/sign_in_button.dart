@@ -5,6 +5,7 @@ import 'package:todo_app_firebase/utils/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todo_app_firebase/utils/custom_colors.dart';
 
 class GoogleSignInButton extends StatefulWidget {
   @override
@@ -17,62 +18,45 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: SizeConfig.safeVertical! * .03),
-      child: _isSigningIn
-          ? CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation(Colors.white),
-            )
-          : OutlinedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.white),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40),
-                  ),
+        padding: EdgeInsets.only(bottom: SizeConfig.safeVertical! * .08),
+        child: _isSigningIn
+            ? CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation(Colors.white),
+              )
+            : TextButton(
+                child: Text(
+                  'Sign in',
+                  style: Theme.of(context).textTheme.headline6!.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 22,
+                      ),
                 ),
-              ),
-              onPressed: () async {
-                setState(() {
-                  _isSigningIn = true;
-                });
-
-                User? user = await Authentication.signInWithGoogle();
-
-                if (user != null) {
+                style: TextButton.styleFrom(
+                  fixedSize: Size(
+                    SizeConfig.safeHorizontal! * .43,
+                    SizeConfig.safeVertical! * .06,
+                  ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50)),
+                  backgroundColor: CustomColors.orange,
+                  elevation: 3,
+                ),
+                onPressed: () async {
                   setState(() {
-                    _isSigningIn = false;
+                    _isSigningIn = true;
                   });
 
-                  Get.off(() => HomePage(user: user));
-                }
-              },
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(0, SizeConfig.safeVertical! * .03,
-                    0, SizeConfig.safeVertical! * .03),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image(
-                      image: AssetImage("assets/google_logo.png"),
-                      height: SizeConfig.safeVertical! * .04,
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsets.only(left: SizeConfig.safeVertical! * .02),
-                      child: Text(
-                        'Sign in with Google',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black54,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-    );
+                  User? user = await Authentication.signInWithGoogle();
+
+                  if (user != null) {
+                    setState(() {
+                      _isSigningIn = false;
+                    });
+
+                    Get.off(() => HomePage(user: user));
+                  }
+                },
+              ));
   }
 }
