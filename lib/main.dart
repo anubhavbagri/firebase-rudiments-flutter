@@ -15,15 +15,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.orange,
-        bottomAppBarColor: CustomColors.appNavy,
+        textTheme: Theme.of(context).textTheme.apply(
+              fontFamily: 'Gilroy',
+            ),
+        // bottomAppBarColor: CustomColors.matte,
         appBarTheme: AppBarTheme(
-          backgroundColor: CustomColors.appOrange,
+          backgroundColor: CustomColors.orange,
           centerTitle: true,
         ),
-        scaffoldBackgroundColor: CustomColors.appNavy,
-        primaryColor: CustomColors.appOrange,
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            backgroundColor: CustomColors.appOrange),
+        scaffoldBackgroundColor: Colors.white,
+        // primaryColor: CustomColors.orange,
+        bottomNavigationBarTheme:
+            BottomNavigationBarThemeData(backgroundColor: CustomColors.orange),
       ),
       debugShowCheckedModeBanner: false,
       home: SignInScreen(),
