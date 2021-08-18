@@ -14,7 +14,8 @@ class CreateNote extends StatelessWidget {
     // ignore: unused_local_variable
     String text = "";
     text = document == null ? "" : document!.data()!.title;
-    TextEditingController textEditingController = new TextEditingController();
+    TextEditingController textEditingController =
+        new TextEditingController(text: text);
 
     return SafeArea(
       child: Scaffold(
@@ -40,7 +41,7 @@ class CreateNote extends StatelessWidget {
                 style: TextStyle(fontSize: 20),
                 keyboardType: TextInputType.multiline,
                 // minLines: 1,
-                maxLines: null,
+                maxLines: 5,
               ),
             ),
             Spacer(),
