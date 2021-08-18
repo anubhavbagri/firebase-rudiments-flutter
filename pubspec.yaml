@@ -29,7 +29,7 @@ dependencies:
   firebase_storage: ^10.0.1
   cloud_firestore: ^2.4.0
   google_sign_in: ^5.0.7
-  image_picker: ^0.8.3+2
+  flutter_svg: ^0.22.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -49,6 +49,19 @@ flutter_icons:
 
 # The following section is specific to Flutter.
 flutter:
+  fonts:
+    - family: Gilroy
+      fonts:
+        - asset: assets/fonts/Gilroy-ExtraBold.otf
+          weight: 800
+        - asset: assets/fonts/Gilroy-Bold.otf
+          weight: 700
+        - asset: assets/fonts/Gilroy-SemiBold.otf
+          weight: 600
+        - asset: assets/fonts/Gilroy-Medium.otf
+          weight: 500
+        - asset: assets/fonts/Gilroy-Regular.otf
+          weight: 400
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
