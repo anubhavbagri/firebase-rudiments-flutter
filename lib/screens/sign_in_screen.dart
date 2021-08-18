@@ -4,6 +4,7 @@ import 'package:todo_app_firebase/services/constants.dart';
 import 'package:todo_app_firebase/services/size_config.dart';
 import 'package:todo_app_firebase/utils/authentication.dart';
 import 'package:todo_app_firebase/utils/custom_colors.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -14,49 +15,42 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Scaffold(
-      backgroundColor: CustomColors.appNavy,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.only(
-            left: SizeConfig.safeHorizontal! * .02,
-            right: SizeConfig.safeHorizontal! * .02,
-            bottom: SizeConfig.safeVertical! * .03,
-          ),
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
           child: Column(
-            mainAxisSize: MainAxisSize.max,
             children: [
-              Row(),
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Flexible(
-                      flex: 1,
-                      child: Image.asset(
-                        'assets/icon.png',
-                        height: SizeConfig.safeVertical! * .1,
-                      ),
-                    ),
-                    SizedBox(height: SizeConfig.safeVertical! * .01),
-                    Text(
-                      'FlutterFire',
-                      style: TextStyle(
-                        color: CustomColors.appYellow,
-                        fontSize: 40,
-                      ),
-                    ),
-                    Text(
-                      'Authentication',
-                      style: TextStyle(
-                        color: CustomColors.appOrange,
-                        fontSize: 40,
-                      ),
-                    ),
-                  ],
+              SizedBox(
+                height: SizeConfig.safeVertical! * .2,
+              ),
+              Container(
+                height: SizeConfig.safeVertical! * .24,
+                child: SvgPicture.asset(
+                  'assets/logo.svg',
                 ),
               ),
+              SizedBox(
+                height: SizeConfig.safeVertical! * .07,
+              ),
+              Text(
+                'Capture Ideas',
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                      color: CustomColors.matte,
+                      fontWeight: FontWeight.w700,
+                    ),
+              ),
+              SizedBox(
+                height: SizeConfig.safeVertical! * .02,
+              ),
+              Text(
+                SIGN_IN_INFO,
+                style: Theme.of(context).textTheme.headline5!.copyWith(
+                      color: CustomColors.matte.withOpacity(0.3),
+                      fontWeight: FontWeight.w400,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+              Spacer(),
               FutureBuilder(
                 future: Authentication.initializeFirebase(),
                 builder: (context, snapshot) {
@@ -67,7 +61,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   }
                   return CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(
-                      CustomColors.appOrange,
+                      CustomColors.orange,
                     ),
                   );
                 },
