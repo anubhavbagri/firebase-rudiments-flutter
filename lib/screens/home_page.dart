@@ -52,14 +52,14 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.home_rounded,
-                color: index == 0 ? CustomColors.appNavy : Colors.grey,
+                color: index == 0 ? CustomColors.matte : Colors.grey,
               ),
               label: 'home',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.person,
-                color: index == 1 ? CustomColors.appNavy : Colors.grey,
+                color: index == 1 ? CustomColors.matte : Colors.grey,
               ),
               label: 'person',
             ),
