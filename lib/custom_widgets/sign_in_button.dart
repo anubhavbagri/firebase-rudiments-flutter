@@ -1,5 +1,4 @@
-import 'package:todo_app_firebase/screens/home_page.dart';
-import 'package:todo_app_firebase/screens/user_info_screen.dart';
+import 'package:todo_app_firebase/screens/notes.dart';
 import 'package:todo_app_firebase/services/size_config.dart';
 import 'package:todo_app_firebase/utils/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,7 +20,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
         padding: EdgeInsets.only(bottom: SizeConfig.safeVertical! * .08),
         child: _isSigningIn
             ? CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation(Colors.white),
+                valueColor: AlwaysStoppedAnimation(CustomColors.orange),
               )
             : TextButton(
                 child: Text(
@@ -54,7 +53,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                       _isSigningIn = false;
                     });
 
-                    Get.off(() => HomePage(user: user));
+                    Get.off(() => MyNotes(user: user));
                   }
                 },
               ));
