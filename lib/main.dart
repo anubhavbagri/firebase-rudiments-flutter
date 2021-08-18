@@ -14,14 +14,22 @@ class MyApp extends StatelessWidget {
       title: 'Todo App',
       theme: ThemeData(
         brightness: Brightness.light,
-        primarySwatch: Colors.orange,
         textTheme: Theme.of(context).textTheme.apply(
               fontFamily: 'Gilroy',
             ),
         // bottomAppBarColor: CustomColors.matte,
         appBarTheme: AppBarTheme(
-          backgroundColor: CustomColors.orange,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          textTheme: Theme.of(context).textTheme.apply(
+                fontFamily: 'Gilroy',
+                fontSizeFactor: 1.2,
+              ),
+          iconTheme: IconThemeData(color: CustomColors.matte),
           centerTitle: true,
+          titleTextStyle: TextStyle(
+            fontWeight: FontWeight.w700,
+          ),
         ),
         scaffoldBackgroundColor: Colors.white,
         // primaryColor: CustomColors.orange,
