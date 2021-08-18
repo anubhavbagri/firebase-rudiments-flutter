@@ -9,3 +9,6 @@ const SIGNOUT_ERROR = 'Error signing out. Try again.';
 const INIT_ERROR = 'Error initializing Firebase';
 const DISCLAIMER =
     'You are now signed in using your Google account. To sign out of your account, click the "Sign Out" button below.';
+
+const DUMMY_PROFILE =
+    'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
