@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_app_firebase/custom_widgets/snackbar.dart';
 import 'package:todo_app_firebase/screens/create_note.dart';
+import 'package:todo_app_firebase/screens/user_info_screen.dart';
 import 'package:todo_app_firebase/utils/custom_colors.dart';
 import 'package:todo_app_firebase/utils/database_helper.dart';
 import 'package:todo_app_firebase/utils/note_modal.dart';
@@ -31,7 +32,10 @@ extension on Query<Note> {
 }
 
 class MyNotes extends StatefulWidget {
-  const MyNotes({Key? key}) : super(key: key);
+  final User? _user;
+  const MyNotes({Key? key, User? user})
+      : _user = user,
+        super(key: key);
 
   @override
   _MyNotesState createState() => _MyNotesState();
@@ -60,32 +64,41 @@ class _MyNotesState extends State<MyNotes> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text('My Notes'),
+          leading: PopupMenuButton<NoteQuery>(
+            onSelected: _updateNotesQuery,
+            icon: Icon(
+              Icons.sort,
+            ),
+            itemBuilder: (BuildContext context) {
+              return [
+                const PopupMenuItem(
+                  value: NoteQuery.titleAsc,
+                  child: Text('Sort by Title ascending'),
+                ),
+                const PopupMenuItem(
+                  value: NoteQuery.titleDesc,
+                  child: Text('Sort by Title descending'),
+                ),
+                const PopupMenuItem(
+                  value: NoteQuery.dateAsc,
+                  child: Text('Sort by Date ascending'),
+                ),
+                const PopupMenuItem(
+                  value: NoteQuery.dateDesc,
+                  child: Text('Sort by Date descending'),
+                ),
+              ];
+            },
+          ),
           actions: [
-            PopupMenuButton<NoteQuery>(
-              onSelected: _updateNotesQuery,
-              icon: Icon(Icons.sort),
-              itemBuilder: (BuildContext context) {
-                return [
-                  const PopupMenuItem(
-                    value: NoteQuery.titleAsc,
-                    child: Text('Sort by Title ascending'),
-                  ),
-                  const PopupMenuItem(
-                    value: NoteQuery.titleDesc,
-                    child: Text('Sort by Title descending'),
-                  ),
-                  const PopupMenuItem(
-                    value: NoteQuery.dateAsc,
-                    child: Text('Sort by Date ascending'),
-                  ),
-                  const PopupMenuItem(
-                    value: NoteQuery.dateDesc,
-                    child: Text('Sort by Date descending'),
-                  ),
-                ];
+            IconButton(
+              icon: Icon(
+                Icons.settings,
+              ),
+              onPressed: () {
+                Get.to(() => UserInfoScreen(user: widget._user));
               },
             )
           ],
@@ -111,45 +124,45 @@ class _MyNotesState extends State<MyNotes> {
                       return Center(
                         child: CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(
-                              CustomColors.appOrange),
+                              CustomColors.orange),
                         ),
                       );
                     } else {
                       return ListView.builder(
-                          itemCount: snapshot.data!.docs.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Dismissible(
-                              key: Key(snapshot.data!.docs[index].id),
-                              background: Container(
-                                color: CustomColors.appNavy,
-                              ),
-                              onDismissed: (direction) {
-                                Database.deleteNoteById(
-                                    snapshot.data!.docs[index].id);
-                                CustomSnackBar.show('Note dismissed');
-                              },
-                              child: Card(
-                                color: Colors.white10,
-                                child: ListTile(
-                                  title: Text(
-                                    snapshot.data!.docs[index].data().title,
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  onTap: () async {
-                                    ///storing document of a particular document id
-                                    DocumentReference docRef = Database.notesRef
-                                        .doc(snapshot.data!.docs[index].id);
-                                    DocumentSnapshot<Note> docSnap =
-                                        await docRef.get()
-                                            as DocumentSnapshot<Note>;
-
-                                    ///navigate to createNote screen
-                                    Get.to(CreateNote(document: docSnap));
-                                  },
+                        itemCount: snapshot.data!.docs.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Dismissible(
+                            key: Key(snapshot.data!.docs[index].id),
+                            background: Container(
+                              color: CustomColors.matte,
+                            ),
+                            onDismissed: (direction) {
+                              Database.deleteNoteById(
+                                  snapshot.data!.docs[index].id);
+                              CustomSnackBar.show('Note dismissed');
+                            },
+                            child: Card(
+                              color: Colors.white10,
+                              child: ListTile(
+                                title: Text(
+                                  snapshot.data!.docs[index].data().title,
+                                  style: TextStyle(color: Colors.white),
                                 ),
+                                onTap: () async {
+                                  ///storing document of a particular document id
+                                  DocumentReference docRef = Database.notesRef
+                                      .doc(snapshot.data!.docs[index].id);
+                                  DocumentSnapshot<Note> docSnap = await docRef
+                                      .get() as DocumentSnapshot<Note>;
+
+                                  ///navigate to createNote screen
+                                  Get.to(CreateNote(document: docSnap));
+                                },
                               ),
-                            );
-                          });
+                            ),
+                          );
+                        },
+                      );
                     }
                   },
                 ),
@@ -157,6 +170,14 @@ class _MyNotesState extends State<MyNotes> {
             )
           ],
         ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: CustomColors.orange,
+          onPressed: () {
+            Get.to(CreateNote());
+          },
+          child: Icon(Icons.add),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
     );
   }
