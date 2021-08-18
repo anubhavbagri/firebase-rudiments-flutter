@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:todo_app_firebase/custom_widgets/snackbar.dart';
-import 'package:todo_app_firebase/screens/home_page.dart';
+import 'package:todo_app_firebase/screens/notes.dart';
 
 import '../services/constants.dart';
 
@@ -13,7 +13,7 @@ class Authentication {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      Get.off(() => HomePage(user: user));
+      Get.off(() => MyNotes(user: user));
     }
     return firebaseApp;
   }
