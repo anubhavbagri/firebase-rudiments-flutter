@@ -46,7 +46,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       color: CustomColors.peach,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    height: 220.0,
+                    height: SizeConfig.safeVertical! * .27,
                     child: Stack(
                       children: [
                         Positioned(
@@ -55,7 +55,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                           child: IconButton(
                             icon: Icon(Icons.arrow_back),
                             color: CustomColors.matte,
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.back();
+                            },
                           ),
                         ),
                       ],
@@ -65,14 +67,14 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 Transform.translate(
                   offset: Offset(0, 15),
                   child: Container(
-                    width: 100,
-                    height: 100,
+                    width: SizeConfig.safeHorizontal! * .26,
+                    height: SizeConfig.safeHorizontal! * .26,
                     decoration: ShapeDecoration.fromBoxDecoration(
                       BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(color: Colors.white, width: 2.5),
                         image: DecorationImage(
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                           image: _user!.photoURL != null
                               ? NetworkImage(
                                   _user!.photoURL!,
@@ -108,9 +110,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     fontWeight: FontWeight.w500,
                   ),
             ),
-            // SizedBox(height: SizeConfig.safeVertical! * .03),
+            SizedBox(height: SizeConfig.safeVertical! * .03),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Card(
                   color: Colors.grey[300],
@@ -123,17 +125,19 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     onPressed: () {},
                   ),
                 ),
+                SizedBox(width: SizeConfig.safeHorizontal! * .05),
                 Card(
                   color: Colors.grey[300],
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
                   child: IconButton(
-                    icon: Icon(FontAwesomeIcons.linkedin),
+                    icon: Icon(FontAwesomeIcons.linkedinIn),
                     color: CustomColors.matte,
                     onPressed: () {},
                   ),
                 ),
+                SizedBox(width: SizeConfig.safeHorizontal! * .05),
                 Card(
                   color: Colors.grey[300],
                   elevation: 0,
@@ -146,57 +150,56 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   ),
                 ),
               ],
-            )
-            // Text(
-            //   DISCLAIMER,
-            //   style: TextStyle(
-            //       color: CustomColors.matte.withOpacity(0.3),
-            //       fontSize: 14,
-            //       letterSpacing: 0.2),
-            // ),
-            // SizedBox(height: SizeConfig.safeVertical! * .03),
-            // _isSigningOut
-            //     ? CircularProgressIndicator(
-            //         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-            //       )
-            //     : ElevatedButton(
-            //         style: ButtonStyle(
-            //           backgroundColor: MaterialStateProperty.all(
-            //             Colors.redAccent,
-            //           ),
-            //           shape: MaterialStateProperty.all(
-            //             RoundedRectangleBorder(
-            //               borderRadius: BorderRadius.circular(10),
-            //             ),
-            //           ),
-            //         ),
-            //         onPressed: () async {
-            //           setState(() {
-            //             _isSigningOut = true;
-            //           });
-            //           await Authentication.signOut();
-            //           setState(() {
-            //             _isSigningOut = false;
-            //           });
-
-            //           Get.off(() => SignInScreen(),
-            //               transition: Transition.downToUp);
-            //         },
-            //         child: Padding(
-            //           padding: EdgeInsets.only(
-            //               top: SizeConfig.safeVertical! * .01,
-            //               bottom: SizeConfig.safeVertical! * .01),
-            //           child: Text(
-            //             'Sign Out',
-            //             style: TextStyle(
-            //               fontSize: 20,
-            //               fontWeight: FontWeight.bold,
-            //               color: Colors.white,
-            //               letterSpacing: 2,
-            //             ),
-            //           ),
-            //         ),
-            //       ),
+            ),
+            SizedBox(height: SizeConfig.safeVertical! * .03),
+            Text(
+              DISCLAIMER,
+              style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                    color: CustomColors.matte.withOpacity(0.3),
+                    fontWeight: FontWeight.w400,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+            Spacer(),
+            _isSigningOut
+                ? CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                  )
+                : TextButton(
+                    child: Text(
+                      'Sign Out',
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 22,
+                          ),
+                    ),
+                    style: TextButton.styleFrom(
+                      fixedSize: Size(
+                        SizeConfig.safeHorizontal! * .8,
+                        SizeConfig.safeVertical! * .06,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      backgroundColor: CustomColors.orange,
+                      elevation: 3,
+                    ),
+                    onPressed: () async {
+                      setState(() {
+                        _isSigningOut = true;
+                      });
+                      await Authentication.signOut();
+                      setState(() {
+                        _isSigningOut = false;
+                      });
+                      Get.off(
+                        () => SignInScreen(),
+                        transition: Transition.downToUp,
+                      );
+                    },
+                  ),
+            SizedBox(height: SizeConfig.safeVertical! * .15),
           ],
         ),
       ),
