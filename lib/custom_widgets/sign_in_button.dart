@@ -1,5 +1,5 @@
 import 'package:todo_app_firebase/screens/notes.dart';
-import 'package:todo_app_firebase/services/size_config.dart';
+import 'package:todo_app_firebase/services/dynamic_size.dart';
 import 'package:todo_app_firebase/utils/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(bottom: SizeConfig.safeVertical! * .08),
+        padding: EdgeInsets.only(bottom: DynamicSize.safeVertical! * .08),
         child: _isSigningIn
             ? CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation(CustomColors.orange),
@@ -33,8 +33,8 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 ),
                 style: TextButton.styleFrom(
                   fixedSize: Size(
-                    SizeConfig.safeHorizontal! * .43,
-                    SizeConfig.safeVertical! * .06,
+                    DynamicSize.safeHorizontal! * .43,
+                    DynamicSize.safeVertical! * .06,
                   ),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50)),

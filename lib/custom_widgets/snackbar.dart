@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo_app_firebase/services/size_config.dart';
+import 'package:todo_app_firebase/services/dynamic_size.dart';
 
 class CustomSnackBar {
   final String message;
@@ -31,8 +31,8 @@ class CustomSnackBar {
         ),
       ),
       margin: EdgeInsets.symmetric(
-          vertical: SizeConfig.safeVertical! * .03,
-          horizontal: SizeConfig.safeHorizontal! * .04),
+          vertical: DynamicSize.safeVertical! * .03,
+          horizontal: DynamicSize.safeHorizontal! * .04),
       borderColor: Colors.red,
       borderRadius: 10,
       borderWidth: 2,

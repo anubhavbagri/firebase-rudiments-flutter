@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-class SizeConfig {
+class DynamicSize {
   static double? safeHorizontal;
   static double? safeVertical;
 

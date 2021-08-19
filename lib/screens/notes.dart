@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:todo_app_firebase/custom_widgets/snackbar.dart';
 import 'package:todo_app_firebase/screens/create_note.dart';
 import 'package:todo_app_firebase/screens/user_info_screen.dart';
-import 'package:todo_app_firebase/services/size_config.dart';
+import 'package:todo_app_firebase/services/dynamic_size.dart';
 import 'package:todo_app_firebase/utils/custom_colors.dart';
 import 'package:todo_app_firebase/utils/database_helper.dart';
 import 'package:todo_app_firebase/utils/note_modal.dart';
@@ -70,11 +70,11 @@ class _MyNotesState extends State<MyNotes> {
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverAppBar(
-              expandedHeight: SizeConfig.safeVertical! * .17,
+              expandedHeight: DynamicSize.safeVertical! * .17,
               flexibleSpace: FlexibleSpaceBar(
                 titlePadding: EdgeInsets.symmetric(
-                  horizontal: SizeConfig.safeHorizontal! * .08,
-                  vertical: SizeConfig.safeVertical! * .02,
+                  horizontal: DynamicSize.safeHorizontal! * .08,
+                  vertical: DynamicSize.safeVertical! * .02,
                 ),
                 title: Text(
                   'Notes',
@@ -185,8 +185,8 @@ class _MyNotesState extends State<MyNotes> {
                               },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: SizeConfig.safeHorizontal! * .07,
-                                  vertical: SizeConfig.safeVertical! * .01,
+                                  horizontal: DynamicSize.safeHorizontal! * .07,
+                                  vertical: DynamicSize.safeVertical! * .01,
                                 ),
                                 child: Stack(
                                   children: [
@@ -204,13 +204,14 @@ class _MyNotesState extends State<MyNotes> {
                                         Get.to(CreateNote(document: docSnap));
                                       },
                                       child: Container(
-                                        height: SizeConfig.safeVertical! * .18,
+                                        height: DynamicSize.safeVertical! * .18,
                                         width: double.infinity,
                                         child: Padding(
                                           padding: EdgeInsets.only(
-                                              left: SizeConfig.safeHorizontal! *
-                                                  .1,
-                                              top: SizeConfig.safeVertical! *
+                                              left:
+                                                  DynamicSize.safeHorizontal! *
+                                                      .1,
+                                              top: DynamicSize.safeVertical! *
                                                   .01),
                                           child: Text(
                                             snapshot.data!.docs[index]
@@ -245,8 +246,8 @@ class _MyNotesState extends State<MyNotes> {
                                       ),
                                     ),
                                     Positioned(
-                                      left: SizeConfig.safeHorizontal! * .09,
-                                      bottom: SizeConfig.safeVertical! * .01,
+                                      left: DynamicSize.safeHorizontal! * .09,
+                                      bottom: DynamicSize.safeVertical! * .01,
                                       child: Row(
                                         children: [
                                           Card(
@@ -274,7 +275,7 @@ class _MyNotesState extends State<MyNotes> {
                                             ),
                                           ),
                                           SizedBox(
-                                            width: SizeConfig.safeHorizontal! *
+                                            width: DynamicSize.safeHorizontal! *
                                                 .05,
                                           ),
                                           Text(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_firebase/custom_widgets/sign_in_button.dart';
 import 'package:todo_app_firebase/services/constants.dart';
-import 'package:todo_app_firebase/services/size_config.dart';
+import 'package:todo_app_firebase/services/dynamic_size.dart';
 import 'package:todo_app_firebase/utils/authentication.dart';
 import 'package:todo_app_firebase/utils/custom_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,23 +14,23 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
+    DynamicSize().init(context);
     return SafeArea(
       child: Scaffold(
         body: Center(
           child: Column(
             children: [
               SizedBox(
-                height: SizeConfig.safeVertical! * .2,
+                height: DynamicSize.safeVertical! * .2,
               ),
               Container(
-                height: SizeConfig.safeVertical! * .24,
+                height: DynamicSize.safeVertical! * .24,
                 child: SvgPicture.asset(
                   'assets/logo.svg',
                 ),
               ),
               SizedBox(
-                height: SizeConfig.safeVertical! * .07,
+                height: DynamicSize.safeVertical! * .07,
               ),
               Text(
                 'Capture Ideas',
@@ -40,7 +40,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
               ),
               SizedBox(
-                height: SizeConfig.safeVertical! * .02,
+                height: DynamicSize.safeVertical! * .02,
               ),
               Text(
                 SIGN_IN_INFO,

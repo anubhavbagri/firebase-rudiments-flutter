@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:todo_app_firebase/services/size_config.dart';
+import 'package:todo_app_firebase/services/dynamic_size.dart';
 import 'package:todo_app_firebase/utils/custom_colors.dart';
 import 'package:todo_app_firebase/utils/database_helper.dart';
 import 'package:todo_app_firebase/utils/note_modal.dart';
@@ -45,8 +45,8 @@ class CreateNote extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: SizeConfig.safeHorizontal! * .04,
-                vertical: SizeConfig.safeVertical! * .02,
+                horizontal: DynamicSize.safeHorizontal! * .04,
+                vertical: DynamicSize.safeVertical! * .02,
               ),
               child: TextField(
                 controller: textEditingController,
@@ -130,7 +130,7 @@ class CreateNote extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: SizeConfig.safeVertical! * .04,
+              height: DynamicSize.safeVertical! * .04,
             ),
             Padding(
               padding: EdgeInsets.only(

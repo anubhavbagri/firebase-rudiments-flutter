@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app_firebase/screens/sign_in_screen.dart';
 import 'package:todo_app_firebase/services/constants.dart';
-import 'package:todo_app_firebase/services/size_config.dart';
+import 'package:todo_app_firebase/services/dynamic_size.dart';
 import 'package:todo_app_firebase/utils/authentication.dart';
 import 'package:todo_app_firebase/utils/custom_colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -30,7 +30,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
+    DynamicSize().init(context);
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -46,7 +46,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       color: CustomColors.peach,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    height: SizeConfig.safeVertical! * .27,
+                    height: DynamicSize.safeVertical! * .27,
                     child: Stack(
                       children: [
                         Positioned(
@@ -67,8 +67,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 Transform.translate(
                   offset: Offset(0, 15),
                   child: Container(
-                    width: SizeConfig.safeHorizontal! * .26,
-                    height: SizeConfig.safeHorizontal! * .26,
+                    width: DynamicSize.safeHorizontal! * .26,
+                    height: DynamicSize.safeHorizontal! * .26,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.white, width: 2.5),
@@ -87,7 +87,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 ),
               ],
             ),
-            SizedBox(height: SizeConfig.safeVertical! * .05),
+            SizedBox(height: DynamicSize.safeVertical! * .05),
             Text(
               _user!.displayName!,
               overflow: TextOverflow.fade,
@@ -98,7 +98,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     fontSize: 30,
                   ),
             ),
-            SizedBox(height: SizeConfig.safeVertical! * .01),
+            SizedBox(height: DynamicSize.safeVertical! * .01),
             Text(
               '${_user!.email}',
               overflow: TextOverflow.fade,
@@ -108,7 +108,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     fontWeight: FontWeight.w500,
                   ),
             ),
-            SizedBox(height: SizeConfig.safeVertical! * .03),
+            SizedBox(height: DynamicSize.safeVertical! * .03),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -123,7 +123,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     onPressed: () {},
                   ),
                 ),
-                SizedBox(width: SizeConfig.safeHorizontal! * .05),
+                SizedBox(width: DynamicSize.safeHorizontal! * .05),
                 Card(
                   color: Colors.grey[300],
                   elevation: 0,
@@ -135,7 +135,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     onPressed: () {},
                   ),
                 ),
-                SizedBox(width: SizeConfig.safeHorizontal! * .05),
+                SizedBox(width: DynamicSize.safeHorizontal! * .05),
                 Card(
                   color: Colors.grey[300],
                   elevation: 0,
@@ -149,7 +149,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 ),
               ],
             ),
-            SizedBox(height: SizeConfig.safeVertical! * .03),
+            SizedBox(height: DynamicSize.safeVertical! * .03),
             Text(
               DISCLAIMER,
               style: Theme.of(context).textTheme.subtitle1!.copyWith(
@@ -174,8 +174,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     ),
                     style: TextButton.styleFrom(
                       fixedSize: Size(
-                        SizeConfig.safeHorizontal! * .8,
-                        SizeConfig.safeVertical! * .06,
+                        DynamicSize.safeHorizontal! * .8,
+                        DynamicSize.safeVertical! * .06,
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -197,7 +197,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       );
                     },
                   ),
-            SizedBox(height: SizeConfig.safeVertical! * .15),
+            SizedBox(height: DynamicSize.safeVertical! * .15),
           ],
         ),
       ),
