@@ -69,20 +69,18 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   child: Container(
                     width: SizeConfig.safeHorizontal! * .26,
                     height: SizeConfig.safeHorizontal! * .26,
-                    decoration: ShapeDecoration.fromBoxDecoration(
-                      BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.white, width: 2.5),
-                        image: DecorationImage(
-                          fit: BoxFit.contain,
-                          image: _user!.photoURL != null
-                              ? NetworkImage(
-                                  _user!.photoURL!,
-                                )
-                              : NetworkImage(
-                                  DUMMY_PROFILE,
-                                ),
-                        ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.white, width: 2.5),
+                      image: DecorationImage(
+                        fit: BoxFit.contain,
+                        image: _user!.photoURL != null
+                            ? NetworkImage(
+                                _user!.photoURL!,
+                              )
+                            : NetworkImage(
+                                DUMMY_PROFILE,
+                              ),
                       ),
                     ),
                   ),
