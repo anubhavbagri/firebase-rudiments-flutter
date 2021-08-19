@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:todo_app_firebase/services/size_config.dart';
@@ -51,17 +53,24 @@ class CreateNote extends StatelessWidget {
                 autofocus: true,
                 textCapitalization: TextCapitalization.sentences,
                 cursorColor: CustomColors.peach,
-                decoration: InputDecoration.collapsed(
+                decoration: InputDecoration(
                   hintText: 'What do you want to save today?',
                   hintStyle: Theme.of(context).textTheme.headline6!.copyWith(
                         color: CustomColors.matte.withOpacity(0.3),
                         fontWeight: FontWeight.w400,
                       ),
+                  counterText: '',
+                  border: InputBorder.none,
                 ),
                 style: TextStyle(fontSize: 22),
                 keyboardType: TextInputType.multiline,
-                // minLines: 1,
                 maxLines: 5,
+                maxLength: 150,
+                maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                scrollPhysics: NeverScrollableScrollPhysics(),
+                inputFormatters: [
+                  FilteringTextInputFormatter.singleLineFormatter
+                ],
               ),
             ),
             Spacer(),
@@ -98,6 +107,8 @@ class CreateNote extends StatelessWidget {
                         Database.addNote(
                           Note(
                               title: textEditingController.text,
+                              name: FirebaseAuth
+                                  .instance.currentUser!.displayName!,
                               uid: Database.user!.uid,
                               dateTime: myTimeStamp),
                         );
@@ -106,6 +117,8 @@ class CreateNote extends StatelessWidget {
                           document!.id,
                           Note(
                             title: textEditingController.text,
+                            name:
+                                FirebaseAuth.instance.currentUser!.displayName!,
                             dateTime: myTimeStamp,
                           ),
                         );
