@@ -19,7 +19,7 @@ class CustomSnackBar {
       icon: myIcon == FontAwesomeIcons.exclamationTriangle
           ? Icon(
               myIcon,
-              color: Colors.amber[400],
+              color: Colors.amber,
             )
           : Card(
               color: myIcon == Icons.delete
