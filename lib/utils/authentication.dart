@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:todo_app_firebase/custom_widgets/snackbar.dart';
@@ -46,19 +47,20 @@ class Authentication {
         //return user Object from user credential
         user = userCredential.user;
         return user;
-      }
-      // on FirebaseAuthException catch (e) {
-      //   if (e.code == 'account-exists-with-different-credential') {
-      //      The account already exists with a different credential
-      //     CustomSnackBar.show(ERROR_1);
-      //   } else if (e.code == 'invalid-credential') {
-      //     CustomSnackBar.show(ERROR_2);
-      //   } else {
-      //     CustomSnackBar.show('Something went wrong 🚧 Try again');
-      //   }
-      // }
-      catch (e) {
-        CustomSnackBar.show(ERROR_3);
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'account-exists-with-different-credential') {
+          ///The account already exists with a different credential
+          CustomSnackBar.show(ERROR_1, FontAwesomeIcons.exclamationTriangle);
+        } else if (e.code == 'invalid-credential') {
+          CustomSnackBar.show(ERROR_2, FontAwesomeIcons.exclamationTriangle);
+        } else {
+          CustomSnackBar.show(
+            'Something went wrong, Try again',
+            FontAwesomeIcons.exclamationTriangle,
+          );
+        }
+      } catch (e) {
+        CustomSnackBar.show(ERROR_3, FontAwesomeIcons.exclamationTriangle);
       }
     }
   }
@@ -72,7 +74,10 @@ class Authentication {
       }
       await FirebaseAuth.instance.signOut();
     } catch (e) {
-      CustomSnackBar.show(SIGNOUT_ERROR);
+      CustomSnackBar.show(
+        SIGNOUT_ERROR,
+        FontAwesomeIcons.exclamationTriangle,
+      );
     }
   }
 }
