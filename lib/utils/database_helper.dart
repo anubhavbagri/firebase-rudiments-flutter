@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:todo_app_firebase/custom_widgets/snackbar.dart';
 import 'package:todo_app_firebase/utils/note_modal.dart';
 
@@ -38,7 +39,10 @@ class Database {
     // Call the user's CollectionReference to add a new user
     return notesRef
         .add(data)
-        .then((value) => CustomSnackBar.show('Note Added'))
+        .then((value) => CustomSnackBar.show(
+              'Note Added',
+              Icons.check,
+            ))
         .catchError((e) => print('Failed to add note: $e'));
   }
 
