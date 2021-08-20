@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:todo_app_firebase/custom_widgets/snackbar.dart';
 import 'package:todo_app_firebase/screens/create_note.dart';
 import 'package:todo_app_firebase/screens/user_info_screen.dart';
+import 'package:todo_app_firebase/services/constants.dart';
 import 'package:todo_app_firebase/services/dynamic_size.dart';
 import 'package:todo_app_firebase/utils/custom_colors.dart';
 import 'package:todo_app_firebase/utils/database_helper.dart';
@@ -46,7 +47,8 @@ class MyNotes extends StatefulWidget {
 
 class _MyNotesState extends State<MyNotes> {
   late Stream<QuerySnapshot<Note>> _notes;
-
+  ValueNotifier<NoteQuery> _selectedItem =
+      new ValueNotifier<NoteQuery>(NoteQuery.dateAsc);
   late Query<Note> _notesQuery;
 
   void _updateNotesQuery(NoteQuery query) {
@@ -87,30 +89,49 @@ class _MyNotesState extends State<MyNotes> {
               ),
               actions: [
                 PopupMenuButton<NoteQuery>(
-                  onSelected: _updateNotesQuery,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  padding: EdgeInsets.zero,
                   icon: Icon(
                     Icons.sort_rounded,
                     size: 34.0,
                   ),
                   itemBuilder: (BuildContext context) {
-                    return [
-                      PopupMenuItem(
-                        value: NoteQuery.titleAsc,
-                        child: Text('Sort by Title ascending'),
-                      ),
-                      const PopupMenuItem(
-                        value: NoteQuery.titleDesc,
-                        child: Text('Sort by Title descending'),
-                      ),
-                      const PopupMenuItem(
-                        value: NoteQuery.dateAsc,
-                        child: Text('Sort by Date ascending'),
-                      ),
-                      const PopupMenuItem(
-                        value: NoteQuery.dateDesc,
-                        child: Text('Sort by Date descending'),
-                      ),
-                    ];
+                    return new List<PopupMenuEntry<NoteQuery>>.generate(
+                      NoteQuery.values.length,
+                      (int index) {
+                        return new PopupMenuItem(
+                          value: NoteQuery.values[index],
+                          child: new AnimatedBuilder(
+                            child: new Text(
+                              SORT_MENU[index],
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1!
+                                  .copyWith(
+                                    color: CustomColors.matte,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                            ),
+                            animation: _selectedItem,
+                            builder: (BuildContext context, Widget? child) {
+                              return new RadioListTile<NoteQuery>(
+                                dense: true,
+                                activeColor: CustomColors.orange,
+                                value: NoteQuery.values[index],
+                                groupValue: _selectedItem.value,
+                                title: child,
+                                onChanged: (NoteQuery? value) {
+                                  _selectedItem.value = value as NoteQuery;
+                                  _updateNotesQuery(value);
+                                  Get.back();
+                                },
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    );
                   },
                 ),
                 IconButton(
@@ -121,7 +142,10 @@ class _MyNotesState extends State<MyNotes> {
                   onPressed: () {
                     Get.to(() => UserInfoScreen(user: widget._user));
                   },
-                )
+                ),
+                SizedBox(
+                  width: DynamicSize.safeHorizontal! * .01,
+                ),
               ],
             ),
           ],
@@ -152,7 +176,7 @@ class _MyNotesState extends State<MyNotes> {
                       } else if (snapshot.data!.docs.length == 0) {
                         return Center(
                           child: Text(
-                            'Start by adding your first note!',
+                            EMPTY_INFO,
                             style: TextStyle(
                                 color: CustomColors.matte.withOpacity(0.3)),
                           ),
