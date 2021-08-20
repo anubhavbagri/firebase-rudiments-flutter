@@ -16,6 +16,12 @@ class CreateNote extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyle titleStyle = Theme.of(context).textTheme.headline5!.copyWith(
+          color: CustomColors.matte,
+          fontWeight: FontWeight.w700,
+          fontSize: 28,
+        );
+
     // ignore: unused_local_variable
     String text = "";
     text = document == null ? "" : document!.data()!.title;
@@ -27,19 +33,25 @@ class CreateNote extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: document == null
-              ? Text(
-                  'Create a New Note',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),
-                )
-              : Text(
-                  'Update note',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+          automaticallyImplyLeading: false,
+          toolbarHeight: DynamicSize.safeVertical! * .18,
+          flexibleSpace: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              IconButton(
+                onPressed: () => Get.back(),
+                icon: Icon(Icons.arrow_back_ios_new_rounded),
+              ),
+              Spacer(),
+              Padding(
+                padding:
+                    EdgeInsets.only(left: DynamicSize.safeHorizontal! * .035),
+                child: document == null
+                    ? Text('Create a New Note', style: titleStyle)
+                    : Text('Update note', style: titleStyle),
+              ),
+            ],
+          ),
         ),
         backgroundColor: Colors.white,
         body: Column(
@@ -47,7 +59,7 @@ class CreateNote extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: DynamicSize.safeHorizontal! * .04,
-                vertical: DynamicSize.safeVertical! * .02,
+                vertical: DynamicSize.safeVertical! * .01,
               ),
               child: TextField(
                 controller: textEditingController,
