@@ -181,7 +181,10 @@ class _MyNotesState extends State<MyNotes> {
                               onDismissed: (direction) {
                                 Database.deleteNoteById(
                                     snapshot.data!.docs[index].id);
-                                CustomSnackBar.show('Note dismissed');
+                                CustomSnackBar.show(
+                                  'Note deleted',
+                                  Icons.delete,
+                                );
                               },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
