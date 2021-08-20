@@ -71,6 +71,7 @@ class _MyNotesState extends State<MyNotes> {
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverAppBar(
               expandedHeight: DynamicSize.safeVertical! * .17,
+              automaticallyImplyLeading: false,
               flexibleSpace: FlexibleSpaceBar(
                 titlePadding: EdgeInsets.symmetric(
                   horizontal: DynamicSize.safeHorizontal! * .08,
@@ -93,7 +94,7 @@ class _MyNotesState extends State<MyNotes> {
                   ),
                   itemBuilder: (BuildContext context) {
                     return [
-                      const PopupMenuItem(
+                      PopupMenuItem(
                         value: NoteQuery.titleAsc,
                         child: Text('Sort by Title ascending'),
                       ),
