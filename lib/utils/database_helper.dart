@@ -60,7 +60,10 @@ class Database {
     return notesRef
         .doc(documentId)
         .update({'title': note.title})
-        .then((value) => print('Note updated'))
+        .then((value) => CustomSnackBar.show(
+              'Note Updated',
+              Icons.check,
+            ))
         .catchError((e) => print('Failed to update note: $e'));
   }
 }
