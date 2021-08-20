@@ -193,7 +193,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       });
                       Get.off(
                         () => SignInScreen(),
-                        transition: Transition.downToUp,
+                        transition: Transition.rightToLeftWithFade,
                       );
                     },
                   ),

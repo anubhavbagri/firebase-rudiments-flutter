@@ -53,7 +53,10 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                       _isSigningIn = false;
                     });
 
-                    Get.off(() => MyNotes(user: user));
+                    Get.off(
+                      () => MyNotes(user: user),
+                      transition: Transition.leftToRightWithFade,
+                    );
                   }
                 },
               ));

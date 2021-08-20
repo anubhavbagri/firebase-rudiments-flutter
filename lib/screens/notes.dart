@@ -140,7 +140,8 @@ class _MyNotesState extends State<MyNotes> {
                     size: 28,
                   ),
                   onPressed: () {
-                    Get.to(() => UserInfoScreen(user: widget._user));
+                    Get.to(() => UserInfoScreen(user: widget._user),
+                        transition: Transition.downToUp);
                   },
                 ),
                 SizedBox(
@@ -229,8 +230,9 @@ class _MyNotesState extends State<MyNotes> {
                                                 as DocumentSnapshot<Note>;
 
                                         ///navigate to createNote screen
-                                        Get.to(() =>
-                                            CreateNote(document: docSnap));
+                                        Get.to(
+                                            () => CreateNote(document: docSnap),
+                                            transition: Transition.fadeIn);
                                       },
                                       child: Container(
                                         height: DynamicSize.safeVertical! * .18,
@@ -337,7 +339,7 @@ class _MyNotesState extends State<MyNotes> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: CustomColors.orange,
           onPressed: () {
-            Get.to(() => CreateNote());
+            Get.to(() => CreateNote(), transition: Transition.zoom);
           },
           child: Icon(Icons.add),
         ),

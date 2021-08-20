@@ -14,7 +14,8 @@ class Authentication {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      Get.off(() => MyNotes(user: user));
+      Get.off(() => MyNotes(user: user),
+          transition: Transition.leftToRightWithFade);
     }
     return firebaseApp;
   }
