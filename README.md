@@ -13,8 +13,10 @@
     <a href="https://github.com/anubhavbagri/firebase-rudiments-flutter/issues">Request Feature</a>
 </p>
 
-> Note: Made purely with an intention to practice and learn. Functionality was implemented using [youtube tutorials](). I designed and revamped the user interface.
+> Note: Made purely with an intention to practice and learn. Functionality was implemented using [youtube tutorials](https://www.youtube.com/playlist?list=PLrk0JvLjdHgyVlZBiOMjCcszK_h8oXJWn). I designed and revamped the user interface while writing null safe code.
 
-## 🎨 UI design
+## 🎨 Draft UI design
 
-I made the user interface on Adobe illustrator (not an appropriate software for UI/UX design but I'm very comfortable in it)
+I made the user interface on Adobe illustrator (not an appropriate software for UI/UX design but I'm quite comfortable in it)
+
+![image](images/TODOui.jpg)
