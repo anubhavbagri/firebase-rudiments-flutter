@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
         textTheme: Theme.of(context).textTheme.apply(
               fontFamily: 'Gilroy',
             ),
-        // bottomAppBarColor: CustomColors.matte,
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -26,13 +25,12 @@ class MyApp extends StatelessWidget {
                 fontSizeFactor: 1.2,
               ),
           iconTheme: IconThemeData(color: CustomColors.matte),
-          centerTitle: true,
+          centerTitle: false,
           titleTextStyle: TextStyle(
             fontWeight: FontWeight.w700,
           ),
         ),
         scaffoldBackgroundColor: Colors.white,
-        // primaryColor: CustomColors.orange,
         bottomNavigationBarTheme:
             BottomNavigationBarThemeData(backgroundColor: CustomColors.orange),
       ),
