@@ -20,7 +20,8 @@ class CreateNote extends StatelessWidget {
     String text = "";
     text = document == null ? "" : document!.data()!.title;
     TextEditingController textEditingController =
-        new TextEditingController(text: text);
+        new TextEditingController(text: text)
+          ..selection = TextSelection.collapsed(offset: text.length);
 
     return SafeArea(
       child: Scaffold(
