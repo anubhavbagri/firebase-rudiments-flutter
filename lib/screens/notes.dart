@@ -229,7 +229,8 @@ class _MyNotesState extends State<MyNotes> {
                                                 as DocumentSnapshot<Note>;
 
                                         ///navigate to createNote screen
-                                        Get.to(CreateNote(document: docSnap));
+                                        Get.to(() =>
+                                            CreateNote(document: docSnap));
                                       },
                                       child: Container(
                                         height: DynamicSize.safeVertical! * .18,
@@ -336,7 +337,7 @@ class _MyNotesState extends State<MyNotes> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: CustomColors.orange,
           onPressed: () {
-            Get.to(CreateNote());
+            Get.to(() => CreateNote());
           },
           child: Icon(Icons.add),
         ),
