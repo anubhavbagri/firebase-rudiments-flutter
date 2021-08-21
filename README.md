@@ -6,7 +6,7 @@
 
 <p align="center">Simple todo app made using flutter toolkit with the help<br>of firebase to learn how authentication and CRUD operations work!
 <br>
-    <a href="">Get Apk</a>
+    <a href="https://github.com/anubhavbagri/firebase-rudiments-flutter/releases/tag/v1.0">Get Apk</a>
     ·
     <a href="https://github.com/anubhavbagri/firebase-rudiments-flutter/issues">Report Bug</a>
     ·
