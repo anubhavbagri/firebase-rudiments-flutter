@@ -74,14 +74,14 @@ I faced a lot of hardships and difficulties while implementing the draft UI and 
 
 <table>
 <tr>
-<td><img src="" alt="screen1" width="80" height="80"></td>
-<td><img src="" alt="screen2"></td>
-<td><img src="" alt="screen3"></td>
+<td><img src="images/screen1.png" alt="screen1"></td>
+<td><img src="images/screen2.png" alt="screen2"></td>
+<td><img src="images/screen3.png" alt="screen3"></td>
 </tr>
 <tr>
-<td><img src="" alt="screen4"></td>
-<td><img src="" alt="screen5"></td>
-<td><img src="" alt="screen6"></td>
+<td><img src="images/screen4.png" alt="screen4"></td>
+<td><img src="images/screen5.png" alt="screen5"></td>
+<td><img src="images/screen6.png" alt="screen6"></td>
 </tr>
 </table>
 
