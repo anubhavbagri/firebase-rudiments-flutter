@@ -77,8 +77,8 @@ class CreateNote extends StatelessWidget {
                 ),
                 style: TextStyle(fontSize: 22),
                 keyboardType: TextInputType.multiline,
-                maxLines: 5,
-                maxLength: 150,
+                maxLines: 2,
+                maxLength: 100,
                 maxLengthEnforcement: MaxLengthEnforcement.enforced,
                 scrollPhysics: NeverScrollableScrollPhysics(),
                 inputFormatters: [
