@@ -33,6 +33,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
     DynamicSize().init(context);
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -163,41 +164,46 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 ? CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                   )
-                : TextButton(
-                    child: Text(
-                      'Sign Out',
-                      style: Theme.of(context).textTheme.headline6!.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 22,
-                          ),
+                : Padding(
+                    padding: EdgeInsets.only(
+                      bottom: DynamicSize.safeVertical! * .04,
                     ),
-                    style: TextButton.styleFrom(
-                      fixedSize: Size(
-                        DynamicSize.safeHorizontal! * .8,
-                        DynamicSize.safeVertical! * .06,
+                    child: TextButton(
+                      child: Text(
+                        'Sign Out',
+                        style: Theme.of(context).textTheme.headline6!.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 22,
+                            ),
                       ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                      style: TextButton.styleFrom(
+                        fixedSize: Size(
+                          DynamicSize.safeHorizontal! * .8,
+                          DynamicSize.safeVertical! * .08,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        backgroundColor: CustomColors.orange,
+                        elevation: 3,
                       ),
-                      backgroundColor: CustomColors.orange,
-                      elevation: 3,
+                      onPressed: () async {
+                        setState(() {
+                          _isSigningOut = true;
+                        });
+                        await Authentication.signOut();
+                        setState(() {
+                          _isSigningOut = false;
+                        });
+                        Get.off(
+                          () => SignInScreen(),
+                          transition: Transition.rightToLeftWithFade,
+                        );
+                      },
                     ),
-                    onPressed: () async {
-                      setState(() {
-                        _isSigningOut = true;
-                      });
-                      await Authentication.signOut();
-                      setState(() {
-                        _isSigningOut = false;
-                      });
-                      Get.off(
-                        () => SignInScreen(),
-                        transition: Transition.rightToLeftWithFade,
-                      );
-                    },
                   ),
-            SizedBox(height: DynamicSize.safeVertical! * .15),
+            // SizedBox(height: DynamicSize.safeVertical! * .15),
           ],
         ),
       ),

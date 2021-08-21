@@ -34,7 +34,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 style: TextButton.styleFrom(
                   fixedSize: Size(
                     DynamicSize.safeHorizontal! * .43,
-                    DynamicSize.safeVertical! * .06,
+                    DynamicSize.safeVertical! * .08,
                   ),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50)),
