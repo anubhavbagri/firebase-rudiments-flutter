@@ -96,3 +96,7 @@ I faced a lot of hardships and difficulties while implementing the draft UI and 
 ## 📃 Licensing
 
 This todo app is licensed under the Apache License, Version 2.0. See [LICENSE](https://github.com/anubhavbagri/firebase-rudiments-flutter/blob/stable/LICENSE) for the full license text.
+
+---
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/C0C05N7QU)
