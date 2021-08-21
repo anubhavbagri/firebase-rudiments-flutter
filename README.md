@@ -56,6 +56,8 @@ samples, guidance on mobile development, and a full API reference.
 3. Get `google-services.json` file and save it in `android/app` directory (for android)
 4. You are now equipped to run this app on your android emulator/device
 
+> You're welcome to submit a PR, throw down an issue, or otherwise contribute to the project.
+
 ## 🚧 Challenges
 
 I faced a lot of hardships and difficulties while implementing the draft UI and bringing it to life in the actual app. Initially, I had to think about what all features would my application have. Once the idea was clear, I implemented all the logic and backend functionalities. Then, faced some issues thinking about how the final user interface would look like. Thus, prepared a draft design on Adobe illustrator. Finally, implementating it took a while but over time it became simpler since I had learnt the art of googling stuff.
@@ -84,3 +86,13 @@ I faced a lot of hardships and difficulties while implementing the draft UI and 
 </table>
 
 ## 🙏 Acknowledgements
+
+- [Flaticon](https://www.flaticon.com/)
+- [Dribbble](https://dribbble.com/shots/14909153-Capture-your-ideas-Notes-organizer-UI-Map/attachments/6623215?mode=media)
+- [FlutterStudio Youtube videos](https://www.youtube.com/playlist?list=PLrk0JvLjdHgyVlZBiOMjCcszK_h8oXJWn)
+- [Johannes Milke Youtube](https://www.youtube.com/channel/UC0FD2apauvegCcsvqIBceLA)
+- [**StackOverflow**](https://stackoverflow.com/questions/tagged/flutter)
+
+## 📃 Licensing
+
+This todo app is licensed under the Apache License, Version 2.0. See [LICENSE](https://github.com/anubhavbagri/firebase-rudiments-flutter/blob/stable/LICENSE) for the full license text.
