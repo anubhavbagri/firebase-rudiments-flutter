@@ -23,18 +23,18 @@ I made the user interface on Adobe illustrator (not an appropriate software for 
 
 ## ✍ App summary
 
-[x] Users can only sign in using their google account credentials
-[x] Once that is successful, they can see the **Notes** page which is initially empty
-[x] They can start adding notes by clicking on the ➕ button in the bottom right corner of the screen
-[x] Added notes would appear in the same page with date and time of its addition
-[x] The note box could be clicked to update the note text
-[x] The note box could be left swiped to dismiss and thus delete it
-[x] The settings button in the top right corner shows the user info screen with a sign out button
-[x] The sort icon button shows a popup menu to sort notes in 4 ways
+- [x] Users can only sign in using their google account credentials
+- [x] Once that is successful, they can see the **Notes** page which is initially empty
+- [x] They can start adding notes by clicking on the ➕ button in the bottom right corner of the screen
+- [x] Added notes would appear in the same page with date and time of its addition
+- [x] The note box could be clicked to update the note text
+- [x] The note box could be left swiped to dismiss and thus delete it
+- [x] The settings button in the top right corner shows the user info screen with a sign out button
+- [x] The sort icon button shows a popup menu to sort notes in 4 ways
    - In ascending & descending order of timestamp
    - In ascending & descending order of note text
-[x] A snackbar/toast appears whenever a note is added, updated, deleted or there's a firebase error
-[x] The user info screen has 3 icons squares placed just to fill some empty space
+- [x] A snackbar/toast appears whenever a note is added, updated, deleted or there's a firebase error
+- [x] The user info screen has 3 icons squares placed just to fill some empty space
 
 ## 💻 How to run?
 
